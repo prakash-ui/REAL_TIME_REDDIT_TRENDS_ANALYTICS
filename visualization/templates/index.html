@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reddit Trend Analysis</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <div id="chart"></div>
+    <script>
+        var trends = {{ trends|tojson }};
+        var timestamps = trends.map(d => d.timestamp);
+        var scores = trends.map(d => d.score_rolling);
+
+        var data = [{
+            x: timestamps,
+            y: scores,
+            type: 'scatter'
+        }];
+
+        Plotly.newPlot('chart', data);
+    </script>
+</body>
+</html>

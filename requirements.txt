@@ -1,0 +1,7 @@
+praw
+pandas
+numpy
+matplotlib
+seaborn
+kafka-python
+flask
