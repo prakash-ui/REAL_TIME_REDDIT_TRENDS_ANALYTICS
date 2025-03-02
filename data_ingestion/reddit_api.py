@@ -1,17 +1,17 @@
-"""
-reddit_api.py
-
-This module fetches real-time Reddit posts using the PRAW library.
-"""
 import praw
+import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 def fetch_reddit_posts():
-    
     reddit = praw.Reddit(
-        client_id='mB4VD2BTCc3EvTxCPxX9iw',
-        client_secret='uGPwQzlvoSi1Z_Co88HnQPZHLbCrTA',
-        user_agent="reddit-analytics:reddit_trend_analyzer:v1.0 (by /u/Historical_Ask_3761)"
+        client_id=os.getenv("CLIENT_ID"),
+        client_secret=os.getenv("CLIENT_SECRET"),
+        user_agent=os.getenv("USER_AGENT")
     )
+    
     subreddit = reddit.subreddit('all')
     for submission in subreddit.stream.submissions():
         yield {
